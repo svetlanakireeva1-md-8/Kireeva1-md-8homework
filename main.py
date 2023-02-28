@@ -9,14 +9,17 @@
 #2
 # typee = ""
 # nom = int(input("Введите номер места"))
-# if nom <= 50:
-#     typee = "Купе"
+# if nom <= 54:
+#     if 0 < nom < 37:
+#         typee = "Купе"
+#     else:
+#         typee = "Боковое"
+#     if nom % 2 == 0:
+#         typee += " верх"
+#     else:
+#         typee += " низ"
 # else:
-#     typee = "Боковое"
-# if nom % 2 == 0:
-#     typee += " верх"
-# else:
-#     typee += " низ"
+#     print("Неправильный номер")
 # print(typee)
 
 #3
