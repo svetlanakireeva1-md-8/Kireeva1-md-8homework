@@ -1,0 +1,40 @@
+def first():
+    from PIL import Image
+    image = Image.open("cat.jpg")
+    image.show()
+    print("размер", image.size)
+    print("формат", image.format)
+    print("цветовая модель", image.mode)
+first()
+
+def second():
+    from PIL import Image
+    image = Image.open("cat.jpg")
+    image2 = image.reduce(3)
+    image2.save("mini_cat.jpg")
+    image3 = image.transpose(Image.FLIP_LEFT_RIGHT)
+    image3.save("cat_vert.jpg")
+    image4 = image.transpose(Image.FLIP_TOP_BOTTOM)
+    image4.save("cat_gor.jpg")
+second()
+
+
+def third():
+    from PIL import Image, ImageFilter
+    images = []
+    n = int(input("Сколько у вас картинок?"))
+    for i in range(1, n + 1):
+        images.append(str(i) + ".jpg")
+    for x in images:
+        image = Image.open(x)
+        image_new = image.filter(ImageFilter.SHARPEN)
+        image_new.save("pic/" + str(x))
+third()
+
+def fourth():
+    from PIL import Image
+    img = Image.open("cat.jpg")
+    watermark = Image.open("watermark.png")
+    img.paste(watermark, (100, 130), watermark)
+    img.save("cat_watermark.png")
+fourth()
