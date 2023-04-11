@@ -1,0 +1,38 @@
+def first():
+    from PIL import Image
+    img = Image.open("otkrytka.jpg")
+    obrez = img.crop((300,100,700,450))
+    obrez.show()
+    obrez.save("mops.png")
+first()
+
+def second():
+    from PIL import Image
+    img_1 = Image.open("otkrytka.jpg")
+    img_2 = Image.open("new_year.jpg")
+    img_3 = Image.open("8march.jpg")
+    slovar = {"день рождения": "img_1", "новый год": "img_2", "8 марта": "img_3"}
+    x = input("К какому празднику нужна открытка?")
+    if slovar[x.lower()] == slovar["день рождения"]:
+        print(img_1.show())
+    if slovar[x.lower()] == slovar["новый год"]:
+        print(img_2.show())
+    if slovar[x.lower()] == slovar["8 марта"]:
+        print(img_3.show())
+second()
+
+def third():
+    from PIL import Image, ImageDraw, ImageFont
+    img = Image.open("otkrytka.jpg")
+    name = input("Введите имя того, кого будете поздравлять")
+    text = ImageDraw.Draw(img)
+    font = ImageFont.truetype("font.otf",size=100)
+    font2 = ImageFont.truetype("font2.otf",size=100)
+    color = str(input("Выберите цвет шрифта: белый или синий?"))
+    if color == ("белый" or "Белый" or "БЕЛЫЙ"):
+        text.text((450, 400), f'{name} congrate!', (255, 255, 255),font=font,stroke_width=2, stroke_fill=(255, 255, 255))
+    elif color == ("синий" or "Синий" or "СИНИЙ"):
+        text.text((450, 400), f'{name} congrate!', (0, 0, 255), font=font2)
+    img.show()
+    img.save("otkrytka2_text.png")
+third()
