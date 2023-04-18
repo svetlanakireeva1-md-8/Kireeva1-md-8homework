@@ -1,0 +1,40 @@
+def f():
+    from PIL import Image, ImageFilter
+    import os
+    if not os.path.exists('pic2'):
+        os.mkdir('pic2')
+    for i in os.listdir('pictures'):
+        image = Image.open(f'pictures/{i}')
+        image2 = image.filter(ImageFilter.SHARPEN)
+        image2.save(f'pic2/{i}')
+f()
+
+def s():
+    from PIL import Image, ImageFilter
+    import os
+    k=[]
+    if not os.path.exists('pic2'):
+        os.mkdir('pic2')
+    for i in os.listdir('pictures'):
+        if i.endswith('.jpg'):
+            k += [i]
+    for i in os.listdir('pictures'):
+        image = Image.open(f'pictures/{i}')
+        image2 = image.filter(ImageFilter.SHARPEN)
+        image2.save(f'pic2/{i}')
+
+s()
+
+def t():
+    import csv
+    filename = 'docu.csv'
+    rez = 'Купить: \n'
+    sum = 0
+    with open(filename,newline='', encoding = 'utf-8') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            sum += int(row[2]) * int(row[1])
+            rez += f'{row[0]} - {row[1]} шт за {row[2]} руб \n'
+        rez += f'Итого: {sum} руб'
+    print(rez)
+t()
