@@ -1,0 +1,81 @@
+def perv():
+    import json
+    kort = []
+    with open("r.json","r",encoding="utf-8") as f:
+        x = json.load(f)
+    for key, value in x.items():
+        kort = value #остался только список из словарей
+    sl1 = kort[0] #шоколад
+    sl2 = kort[1] #кофе
+    sl3 = kort[2] #чай
+
+    print(" Название:", sl1['name'],'\n',"Цена:", sl1['price'],'\n',"Вес:", sl1['weight'])
+    if sl1['available'] == False:
+        print(" Нет в наличии!",'\n')
+    else:
+        print(" В наличии",'\n')
+
+    print(" Название:", sl2['name'],'\n',"Цена:", sl2['price'],'\n',"Вес:", sl2['weight'])
+    if sl2['available'] == False:
+        print(" Нет в наличии!",'\n')
+    else:
+        print(" В наличии",'\n')
+
+    print(" Название:", sl3['name'],'\n',"Цена:", sl3['price'],'\n',"Вес:", sl3['weight'])
+    if sl3['available'] == False:
+        print(" Нет в наличии!",'\n')
+    else:
+        print(" В наличии",'\n')
+perv()
+
+def vtor():
+    import json
+    kort = []
+    with open("r.json", "r", encoding="utf-8") as f:
+        x = json.load(f)
+    for key, value in x.items():
+        kort = value  # остался только список из словарей
+    sl1 = kort[0]  # шоколад
+    sl2 = kort[1]  # кофе
+    sl3 = kort[2]  # чай
+
+    n = str(input("Введите название продукта"))
+    p = int(input("Введите цену"))
+    w = int(input("Введите вес"))
+    a = str(input("Есть в наличии?"))
+    kort+=[{'name': n, 'price': p, 'available': a, 'weight': w}]
+    sl4 = kort[3] #новый продукт
+    d = open("r1.json","w")
+    json.dump(kort,d, ensure_ascii=False)
+
+    print(" Название:", sl1['name'], '\n', "Цена:", sl1['price'], '\n', "Вес:", sl1['weight'])
+    if sl1['available'] == False:
+        print(" Нет в наличии!", '\n')
+    else:
+        print(" В наличии", '\n')
+
+    print(" Название:", sl2['name'], '\n', "Цена:", sl2['price'], '\n', "Вес:", sl2['weight'])
+    if sl2['available'] == False:
+        print(" Нет в наличии!", '\n')
+    else:
+        print(" В наличии", '\n')
+
+    print(" Название:", sl3['name'], '\n', "Цена:", sl3['price'], '\n', "Вес:", sl3['weight'])
+    if sl3['available'] == False:
+        print(" Нет в наличии!", '\n')
+    else:
+        print(" В наличии", '\n')
+
+    print(" Название:", sl4['name'], '\n', "Цена:", sl4['price'], '\n', "Вес:", sl4['weight'],'\n',sl4['available'])
+
+vtor()
+
+def slov():
+    import csv
+    with open("en-ru.txt",encoding='utf-8') as f:
+        s1 = csv.reader(f,delimiter='-')
+        s2 = [row[::-1] for row in s1]
+    with open("ru-en.txt", 'w', encoding='utf-8') as f2:
+        rez = csv.writer(f2,delimiter="-")
+        [rez.writerow(data) for data in s2]
+slov()
