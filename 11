@@ -1,0 +1,39 @@
+def el():
+    class Restaurant:
+        def __init__(self,name,type):
+            self.name = name
+            self.type = type
+        def describe(self):
+            print(f'Название ресторана: {self.name}\nТип кухни: {self.type}\n')
+        def open(self):
+            print("Ресторан открыт",'\n')
+    new_rest = Restaurant("Rainbow", "italian")
+    new_rest.describe()
+    new_rest.open()
+    
+    #second
+    rest2= Restaurant("Feel", "french")
+    rest2.describe()
+    rest3 = Restaurant("Numb", "british")
+    rest3.describe()
+    rest4 = Restaurant("Grace", "spanish")
+    rest4.describe()
+el()
+
+def th():
+    class Restaurant:
+        def __init__(self, name, type, rating):
+            self.name = name
+            self.type = type
+            self.rating = rating
+
+        def describe(self):
+            print(f'Название ресторана: {self.name}\nТип кухни: {self.type}\nРейтинг: {self.rating}\n')
+
+        def new(self,new_rating):
+            self.rating = new_rating
+
+    new_rest = Restaurant("Rainbow", "italian", "2")
+    new_rest.new(7)
+    new_rest.describe()
+th()
