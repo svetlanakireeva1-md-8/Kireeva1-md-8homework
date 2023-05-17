@@ -1,0 +1,89 @@
+#1
+def dvo():
+    class Restaurant:
+        def __init__(self, name, type, flavors):
+            self.name = name
+            self.type = type
+            self.flavors = flavors
+
+        def describe(self):
+            print(f'Название ресторана: {self.name}\nТип кухни: {self.type}\n')
+
+        def open(self):
+            print("Ресторан открыт", '\n')
+
+    class IceCreamStand(Restaurant):
+        def flav(self):
+            print(f'Список ароматов: {self.flavors}\n')
+
+        def describe(self):
+            print(f'Название ресторана: {self.name}\nТип кухни: {self.type}\nАроматы: {self.flavors}\n')
+    icecream_stand = IceCreamStand("pink", "ice", "bluberry,cherry,strawberry")
+    icecream_stand.flav()
+    icecream_stand.describe()
+dvo()
+
+#2
+def dvd():
+    class Restaurant:
+        def __init__(self, name, type):
+            self.name = name
+            self.type = type
+    class IceCreamStand(Restaurant):
+        def __init__(self, name, type, location, time):
+            super().__init__(name,type)
+            self.flavors = []
+            self.location = location
+            self.time = time
+        def lst(self):
+            print(f"Список ароматов: {', '.join(self.flavors)}\n")
+        def add(self,flavor):
+            self.flavors.append(flavor)
+        def delete(self,flavor):
+            if flavor in self.flavors:
+                self.flavors.remove(flavor)
+            else:
+                print("Такого аромата нет")
+        def proverka(self,flavor):
+            if flavor in self.flavors:
+                print("Такой аромат есть")
+            else:
+                print("Такого аромата нет")
+    class FruitIce(IceCreamStand):
+        def defrost(self):
+            print("Разморозить")
+    class Popsicle(IceCreamStand):
+        def sort(self):
+            print("Рассортировать")
+    rest_1 = IceCreamStand("Pink","Isecream","Amsterdam", "9:00-20:00")
+    rest_1.add((input("Введите аромат")))
+    rest_1.proverka(input("Введите аромат, который нужно проверить в наличии"))
+    rest_1.lst()
+    rest_1.delete(input("Введите аромат, который нужно удалить"))
+dvd()
+
+#3
+from tkinter import *
+class Restaurant:
+    def __init__(self, name, type):
+        self.name = name
+        self.type = type
+class IceCreamStand(Restaurant):
+    def __init__(self, name, type):
+        super().__init__(name,type)
+        self.flavors = []
+rest_1 = IceCreamStand("Pink","Isecream")
+rest_1.flavors.append("Вишнёвое")
+rest_1.flavors.append("Клубничное")
+rest_1.flavors.append("Шоколадное")
+root = Tk()
+root['bg'] = '#fafafa'
+root.geometry('100x100')
+root.resizable(width=False, height=False)
+title = Label(text="Ароматы:")
+title.pack()
+languages = rest_1.flavors
+languages_var = Variable(value=languages)
+languages_listbox = Listbox(listvariable=languages_var)
+languages_listbox.pack()
+root.mainloop()
