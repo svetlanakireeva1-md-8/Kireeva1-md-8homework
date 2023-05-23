@@ -1,0 +1,59 @@
+#13_1(программа о погоде)
+from tkinter import *
+import requests
+root = Tk()
+def get_weather():
+    city = cityField.get()
+    key = '53801eb4b42d923620260780d673f1c2'
+    url = 'http://api.openweathermap.org/data/2.5/weather'
+    params = {'APPID': key, 'q': city, 'units': 'metric'}
+    result = requests.get(url, params=params)
+    weather = result.json()
+    info['text'] = f'{str(weather["name"])}: {weather["main"]["temp"]}'
+root['bg'] = '#fafafa'
+root.title('Погода')
+root.geometry('300x250')
+root.resizable(width=False, height=False)
+frame_top = Frame(root, bg='#5E7CB5', bd=5)
+frame_top.place(relx=0.15, rely=0.15, relwidth=0.7, relheight=0.25)
+frame_bottom = Frame(root, bg='#5E7CB5', bd=5)
+frame_bottom.place(relx=0.15, rely=0.55, relwidth=0.7, relheight=0.1)
+cityField = Entry(frame_top, bg='white', font=30)
+cityField.pack()
+btn = Button(frame_top, text='Узнать погоду', command=get_weather)
+btn.pack()
+info = Label(frame_bottom, text='Погодная информация', bg='#5E7CB5', font=40)
+info.pack()
+root.mainloop()
+
+#13_2(программа,которая выводит исторические факты из википедии для введенного города)
+import wikipedia
+import tkinter as tk
+def get_facts(city_name):
+    wikipedia.set_lang("ru")
+    try:
+        page = wikipedia.page(city_name)
+        facts = page.section("История").split("\n\n")[0:2]
+    except wikipedia.exceptions.DisambiguationError:
+        return ["Название города неоднозначно", "Попробуйте указать регион"]
+    except (wikipedia.exceptions.PageError, IndexError):
+        return ["Информация не найдена", ""]
+    return facts
+def show_facts():
+    city_name = entry.get()
+    facts = get_facts(city_name)
+    fact1_label.config(text=facts[0])
+    fact2_label.config(text=facts[1])
+root = tk.Tk()
+root.title("Исторические факты о городах")
+entry_label = tk.Label(root, text="Введите название города:")
+entry_label.grid(row=0, column=0)
+entry = tk.Entry(root)
+entry.grid(row=0, column=1)
+search_button = tk.Button(root, text="Найти", command=show_facts)
+search_button.grid(row=0, column=2)
+fact1_label = tk.Label(root, text="")
+fact1_label.grid(row=1, column=0, columnspan=3)
+fact2_label = tk.Label(root, text="")
+fact2_label.grid(row=2, column=0, columnspan=3)
+root.mainloop()
